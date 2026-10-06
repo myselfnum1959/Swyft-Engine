@@ -5,6 +5,7 @@
 The project is designed to explore how game engines work internally while providing a simple foundation for building 2D games. It currently includes basic entities, physics, collision detection, input handling, scene management, and a game loop.
 
 > **Status:** Early development
+> Started in October 6, 2026
 
 ---
 
