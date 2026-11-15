@@ -85,6 +85,8 @@ tests/            pytest suite
 docs/             architecture + script reference
 ```
 
+_Project Started in October 6, 2026_
+
 ## License
 
 MIT
