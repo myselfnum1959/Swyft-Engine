@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "swyft-engine"
+version = "0.2.0"
+description = "A small 2D engine for story-driven games, built on pygame."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["pygame>=2.5"]  # pygame-ce also works as a drop-in replacement
+
+[project.optional-dependencies]
+dev = ["pytest>=7", "ruff"]
+
+[tool.setuptools.packages.find]
+include = ["swyft*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 120

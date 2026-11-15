@@ -1,0 +1,57 @@
+# The Last Ferry - a small demo showing Swyft's scripting language.
+# Placeholder art is drawn automatically, so no image files are needed.
+
+character mira "Mira" color "#7fd1ff"
+character sailor "Old Sailor" color "#ffd27f"
+
+default courage = 0
+default has_ticket = false
+
+label start:
+    scene harbor_dusk
+    "Fog rolls over the harbor as the last ferry of the night creaks against the dock."
+    show mira calm at left
+    mira "You're late. The ferry leaves in five minutes."
+    menu:
+        "Apologise and ask for help":
+            set courage += 1
+            mira "Hmm. At least you're polite."
+        "Say you don't need her help":
+            mira "Suit yourself."
+    jump dock
+
+label dock:
+    show sailor grumpy at right
+    sailor "Ticket, or no ride."
+    menu:
+        "Show your ticket" if has_ticket:
+            sailor "Hm. Fine. Go on."
+            jump ferry
+        "Ask Mira to vouch for you" if courage >= 1:
+            mira "He's with me."
+            sailor "...Fine."
+            jump ferry
+        "Look around the harbor" if not has_ticket:
+            "You find a crumpled ticket under a barrel."
+            set has_ticket = true
+            jump dock
+        "Walk away":
+            jump walked_away
+
+label ferry:
+    hide sailor
+    scene ferry_deck
+    show mira surprised at center
+    shake 10 0.5
+    "The engine coughs. The whole deck lurches."
+    mira "Hold on tight!"
+    if "dock" in visited and has_ticket:
+        "You hold your hard-won ticket a little tighter."
+    wait 0.5
+    "You made it across. Courage gained: {courage}."
+    end
+
+label walked_away:
+    scene harbor_dusk
+    "The ferry's horn fades into the fog. Some nights, you just miss the boat."
+    end
